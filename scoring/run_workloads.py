@@ -151,13 +151,15 @@ def main(_):
     held_out_workloads = read_held_out_workloads(
         FLAGS.held_out_workloads_config_path)
     workloads = workloads + held_out_workloads
+  
+  logging.info("workload argument: "+FLAGS.workload)
 
   # Filter for single workload
   if FLAGS.workload and (FLAGS.workload in workloads):
     workloads = [FLAGS.workload]
 
   rng_subkeys = prng.split(rng_key, num_studies)
-
+  logging.info(f"workloads: {workloads}")
   for study_index, rng_subkey in zip(range(study_start_index, study_end_index + 1), rng_subkeys):
     print('-' * 100)
     print('*' * 40, f'Starting study {study_index + 1}/{num_studies}', '*' * 40)
@@ -179,7 +181,7 @@ def main(_):
       mount_repo_flag = ''
       if FLAGS.local:
         mount_repo_flag = '-v $HOME/algorithmic-efficiency:/algorithmic-efficiency '
-      command = ('docker run -t -d -v $HOME/data/:/data/ '
+      command = ('docker run -t -d -v /home/kasimbeg_google_com/data/:/data/ '
                  '-v $HOME/experiment_runs/:/experiment_runs '
                  '-v $HOME/experiment_runs/logs:/logs '
                  f'{mount_repo_flag}'

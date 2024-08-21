@@ -510,7 +510,9 @@ def score_submission_on_workload(workload: spec.Workload,
   data_dir = os.path.expanduser(data_dir)
   if imagenet_v2_data_dir:
     imagenet_v2_data_dir = os.path.expanduser(imagenet_v2_data_dir)
-
+  
+  logging.info("current working directory: "+os.getcwd())
+  
   # Remove the trailing '.py' and convert the filepath to a Python module.
   submission_module_path = workloads.convert_filepath_to_module(submission_path)
   submission_module = importlib.import_module(submission_module_path)

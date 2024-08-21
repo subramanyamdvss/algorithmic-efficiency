@@ -18,7 +18,7 @@ then
 GIT_BRANCH='main' # Set default argument
 fi 
 
-for FRAMEWORK in "jax" "pytorch" "both"
+for FRAMEWORK in "both"
 do
     IMAGE_NAME="algoperf_${FRAMEWORK}_${GIT_BRANCH}"
     DOCKER_BUILD_COMMAND="docker build --no-cache -t $IMAGE_NAME . --build-arg framework=$FRAMEWORK --build-arg branch=$GIT_BRANCH"
@@ -31,8 +31,8 @@ do
     eval $DOCKER_BUILD_COMMAND
     echo $DOCKER_TAG_COMMAND
     eval $DOCKER_TAG_COMMAND
-    echo $DOCKER_PUSH_COMMAND
-    eval $DOCKER_PUSH_COMMAND
+    #echo $DOCKER_PUSH_COMMAND
+    #eval $DOCKER_PUSH_COMMAND
     echo "To pull container run: "
     echo $DOCKER_PULL_COMMAND
 done

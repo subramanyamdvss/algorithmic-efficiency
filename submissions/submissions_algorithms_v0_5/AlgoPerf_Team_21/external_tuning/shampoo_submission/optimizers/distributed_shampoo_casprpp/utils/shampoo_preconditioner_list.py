@@ -691,15 +691,18 @@ class ShampooPreconditionerList(PreconditionerList):
                 # Construct outer product list for updating Kronecker factors.
                 precond_grad = grad
                 for k in range(order):
-                    precond_k = kronecker_factors.inv_factor_matrices[k]
-                    precond_grad = precondition_along_axis(precond_grad,precond_k,k)
+                    
                     gram_grad = precond_grad if (k==order-1) and k>0 else grad
+                    
                     outer_product = torch.tensordot(
                         gram_grad,
                         gram_grad,
                         # Contracts across all dimensions except for k.
                         dims=[[*chain(range(k), range(k + 1, order))]] * 2,
                     )
+                    if k<order-1:
+                        precond_k = kronecker_factors.inv_factor_matrices[k]
+                        precond_grad = precondition_along_axis(precond_grad,precond_k,k)
                     outer_product_list.append(outer_product)
                 
                 outer_product_list = tuple(outer_product_list)

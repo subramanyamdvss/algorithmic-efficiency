@@ -675,7 +675,7 @@ class ShampooPreconditionerList(PreconditionerList):
                 output_letter = "z"
                 output_str = input_str.replace(input_letter,output_letter)
                 eqn = f"{input_str},{input_letter}{output_letter}->{output_str}"
-                logging.info(f"einsum eqn: {eqn}, g.shape: {g.shape}, precond.shape: {precond.shape}")
+                #logging.info(f"einsum eqn: {eqn}, g.shape: {g.shape}, precond.shape: {precond.shape}")
                 return torch.einsum(eqn,g,precond)
 
             for grad, order, kronecker_factors in zip(
@@ -851,7 +851,7 @@ class ShampooPreconditionerList(PreconditionerList):
                             )
                     
                 factor_matrices_shapes = [ mat.shape for mat in kronecker_factors.factor_matrices]
-                logger.info(f"root_list_debug: {root_list_debug} kronecker factors {factor_matrices_shapes}") 
+                #logger.info(f"root_list_debug: {root_list_debug} kronecker factors {factor_matrices_shapes}") 
 
 
     def compress_preconditioner_list(

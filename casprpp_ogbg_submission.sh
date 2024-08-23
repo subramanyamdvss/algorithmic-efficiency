@@ -4,8 +4,8 @@ python scoring/run_workloads.py --framework pytorch \
 --num_studies 3 \
 --num_tuning_trials 5 \
 --seed 10 \
---hparam_start_index 1 \
---hparam_end_index 2 \
+--hparam_start_index 3 \
+--hparam_end_index 4 \
 --run_percentage 100 \
 --workload_metadata_path "scoring/workload_metadata_external_tuning.json" \
 --submission_path  "submissions/submissions_algorithms_v0_5/AlgoPerf_Team_21/external_tuning/shampoo_submission/submission_casprpp.py" \

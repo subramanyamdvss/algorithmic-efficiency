@@ -3,7 +3,7 @@ python scoring/run_workloads.py --framework pytorch \
 --experiment_name casprpp_wmt_experiment \
 --num_studies 3 \
 --num_tuning_trials 5 \
---rng_seed 10 \
+--seed 10 \
 --hparam_start_index 3 \
 --hparam_end_index 4 \
 --run_percentage 100 \
